@@ -13,8 +13,8 @@ script:
 deploy:
     provider: elasticbeanstalk #aws
     region: "us-west-2"
-    app: "docker-node"
-    env: "DockerNode-env"
+    app: "Docker"
+    env: "Docker-env-1"
     bucket_name: "elasticbeanstalk-us-west-2-361033845088"
     bucket_path: "docker-node"
     #only use master branch
