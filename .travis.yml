@@ -5,9 +5,26 @@ services:
 #executed before tests are done
 before_install: 
     - docker build -t sentinelwawesh/node -f Dockerfile.dev .
-
+#running tests
 script:
   - docker run -e CI=true sentinelwawesh/node npm run test -- --coverage
+
+#deploy to AWS
+deploy:
+    provider: elasticbeanstalk #aws
+    region: "us-west-2"
+    app: "docker-node"
+    env: "DockerNode-env"
+    bucket_name: "elasticbeanstalk-us-west-2-361033845088"
+    bucket_path: "docker-node"
+    #only use master branch
+    on:
+      branch: master
+    access_key_id:
+       secure: $AWS
+    secret_access_key:
+       secure: "$AWS_SECRET_KEY"
+
 
 
 
