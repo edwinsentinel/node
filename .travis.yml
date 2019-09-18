@@ -1,0 +1,13 @@
+# GRANT SUPER USER PERMISSION.
+sudo: required
+services:
+    -docker
+#executed before tests are done
+before_install: 
+    - docker build -t sentinelwawesh/node -f Dockerfile.dev .
+
+script:
+  - docker run -e CI=true sentinelwawesh/node npm run test -- --coverage
+
+
+
